@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/companyMainFragment">
+
+    <fragment
+        android:id="@+id/companyMainFragment"
+        android:name="com.example.rnv_pr10_fct.ui.company.CompanyMainFragment"
+        android:label="CompanyMainFragment">
+        <action
+            android:id="@+id/action_companyMainFragment_to_companyDetails"
+            app:destination="@id/companyDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/companyDetails"
+        android:name="com.example.rnv_pr10_fct.ui.company.detailsCompany.CompanyDetails"
+        android:label="company_details"
+        tools:layout="@layout/company_details" />
+</navigation>
