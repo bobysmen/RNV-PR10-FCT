@@ -46,8 +46,21 @@ public class CompanyDetails extends Fragment {
                         new RepositoryImpl(
                                 AppDatabase.getInstance(requireContext().getApplicationContext()).companyDao()))).get(CompanyMainViewModel.class);
         setupViews();
+        if(viewModelCompany.isEdit()){
+            fillFields(viewModelCompany.getCompany());
+        }
         fieldsValidations();
 
+    }
+
+    private void fillFields(Company company) {
+        b.txtName.setText(company.getName());
+        b.txtCif.setText(company.getCif());
+        b.txtAddress.setText(company.getAddress());
+        b.txtPhone.setText(company.getPhone());
+        b.txtEmail.setText(company.getEmail());
+        b.txtUrlLogo.setText(company.getUrlLogo());
+        b.txtNameContact.setText(company.getContactName());
     }
 
     private void fieldsValidations() {
@@ -141,10 +154,28 @@ public class CompanyDetails extends Fragment {
 
     private void saveCompany() {
         if (validForm()) {
-            viewModelCompany.insertCompany(new Company(0, b.txtName.getText().toString(), b.txtCif.getText().toString(), b.txtAddress.getText().toString(), b.txtPhone.getText().toString(), b.txtEmail.getText().toString(), b.txtUrlLogo.getText().toString(), b.txtNameContact.getText().toString()));
+            if(viewModelCompany.isEdit()){
+                updateCompanyViewModel();
+                viewModelCompany.updateCompany(viewModelCompany.getCompany());
+            }else{
+                viewModelCompany.insertCompany(new Company(0, b.txtName.getText().toString(), b.txtCif.getText().toString(), b.txtAddress.getText().toString(), b.txtPhone.getText().toString(), b.txtEmail.getText().toString(), b.txtUrlLogo.getText().toString(), b.txtNameContact.getText().toString()));
+
+            }
+
             Toast.makeText(getContext(), "Save successfully", Toast.LENGTH_LONG).show();
+
         }else{
             Toast.makeText(getContext(), "Error, check fields", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void updateCompanyViewModel() {
+        viewModelCompany.getCompany().setName(b.txtName.getText().toString());
+        viewModelCompany.getCompany().setCif(b.txtCif.getText().toString());
+        viewModelCompany.getCompany().setAddress(b.txtAddress.getText().toString());
+        viewModelCompany.getCompany().setPhone(b.txtPhone.getText().toString());
+        viewModelCompany.getCompany().setEmail(b.txtEmail.getText().toString());
+        viewModelCompany.getCompany().setUrlLogo(b.txtUrlLogo.getText().toString());
+        viewModelCompany.getCompany().setContactName(b.txtNameContact.getText().toString());
     }
 }

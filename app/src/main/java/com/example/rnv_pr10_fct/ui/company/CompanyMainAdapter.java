@@ -17,8 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CompanyMainAdapter extends ListAdapter<Company, CompanyMainAdapter.ViewHolder> {
 
+    private final OnCompanyClickListenerEdit onCompanyClickListenerEdit;
 
-    protected CompanyMainAdapter() {
+    protected CompanyMainAdapter(OnCompanyClickListenerEdit onCompanyClickListenerEdit) {
         super(new DiffUtil.ItemCallback<Company>() {
             @Override
             public boolean areItemsTheSame(@NonNull Company oldItem, @NonNull Company newItem) {
@@ -35,6 +36,7 @@ public class CompanyMainAdapter extends ListAdapter<Company, CompanyMainAdapter.
                         TextUtils.equals(oldItem.getPhone(), newItem.getPhone());
             }
         });
+        this.onCompanyClickListenerEdit = onCompanyClickListenerEdit;
     }
 
     @NonNull
@@ -42,8 +44,7 @@ public class CompanyMainAdapter extends ListAdapter<Company, CompanyMainAdapter.
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(
                 LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.company_list_item_fragment, parent, false)
-        );
+                .inflate(R.layout.company_list_item_fragment, parent, false), onCompanyClickListenerEdit);
     }
 
     @Override
@@ -65,9 +66,10 @@ public class CompanyMainAdapter extends ListAdapter<Company, CompanyMainAdapter.
 
         private final TextView lblName;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnCompanyClickListenerEdit onCompanyClickListenerEdit) {
             super(itemView);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
+            itemView.setOnClickListener(v -> onCompanyClickListenerEdit.onItemClick(getAdapterPosition()));
         }
 
         void bind(Company company){

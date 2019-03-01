@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.rnv_pr10_fct.R;
 import com.example.rnv_pr10_fct.data.RepositoryImpl;
 import com.example.rnv_pr10_fct.data.local.AppDatabase;
+import com.example.rnv_pr10_fct.data.local.model.Company;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.annotation.NonNull;
@@ -79,13 +80,20 @@ public class CompanyMainFragment extends Fragment {
         fabAddCompany.setOnClickListener(this::addNewCompany);
 
         lstCompany.setHasFixedSize(true);
-        listAdapter = new CompanyMainAdapter();
+        listAdapter = new CompanyMainAdapter(position -> editCompany(listAdapter.getItem(position)));
         lstCompany.setAdapter(listAdapter);
         lstCompany.setLayoutManager(new GridLayoutManager(getContext(), getResources().getInteger(R.integer.main_lstCompany_columns)));
         lstCompany.setItemAnimator(new DefaultItemAnimator());
     }
 
+    private void editCompany(Company company) {
+        viewModel.setEdit(true);
+        viewModel.setCompany(company);
+        Navigation.findNavController(getView()).navigate(R.id.companyDetails);
+    }
+
     private void addNewCompany(View view) {
+        viewModel.setEdit(false);
         Navigation.findNavController(view).navigate(R.id.companyDetails);
     }
 }

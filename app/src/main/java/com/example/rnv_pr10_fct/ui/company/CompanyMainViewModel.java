@@ -12,6 +12,8 @@ public class CompanyMainViewModel extends ViewModel {
 
     private final Repository repository;
     private LiveData<List<Company>> companies;
+    private Company company;
+    private boolean isEdit;
 
     public CompanyMainViewModel(Repository repository) {
         this.repository = repository;
@@ -34,5 +36,21 @@ public class CompanyMainViewModel extends ViewModel {
 
     public int deleteCompany(Company company){
         return repository.deleteCompany(company);
+    }
+
+    public boolean isEdit() {
+        return isEdit;
+    }
+
+    public void setEdit(boolean edit) {
+        isEdit = edit;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }

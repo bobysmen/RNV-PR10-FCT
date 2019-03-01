@@ -42,6 +42,7 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public int updateCompany(Company company) {
+        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> companyDao.updateCompany(company));
         return 0;
     }
 
