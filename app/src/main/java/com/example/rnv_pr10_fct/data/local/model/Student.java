@@ -16,6 +16,9 @@ public class Student {
     @ColumnInfo(name = "id")
     private long id;
 
+    @ColumnInfo(name = "name")
+    private String name;
+
     @ColumnInfo(name = "phone")
     private String phone;
 
@@ -36,6 +39,18 @@ public class Student {
 
     @ColumnInfo(name = "idCompany")
     private long idCompany;
+
+    public Student(long id, String name, String phone, String email, String grade, String nameTutor, String phoneTutor, String workHours, long idCompany) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.grade = grade;
+        this.nameTutor = nameTutor;
+        this.phoneTutor = phoneTutor;
+        this.workHours = workHours;
+        this.idCompany = idCompany;
+    }
 
     public long getId() {
         return id;
@@ -99,5 +114,13 @@ public class Student {
 
     public void setIdCompany(long idCompany) {
         this.idCompany = idCompany;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

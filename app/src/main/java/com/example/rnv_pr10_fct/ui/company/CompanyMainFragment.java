@@ -82,7 +82,7 @@ public class CompanyMainFragment extends Fragment {
         lstCompany.setHasFixedSize(true);
         listAdapter = new CompanyMainAdapter(position -> editCompany(listAdapter.getItem(position)));
         lstCompany.setAdapter(listAdapter);
-        lstCompany.setLayoutManager(new GridLayoutManager(getContext(), getResources().getInteger(R.integer.main_lstCompany_columns)));
+        lstCompany.setLayoutManager(new GridLayoutManager(getContext(), getResources().getInteger(R.integer.main_lst_columns)));
         lstCompany.setItemAnimator(new DefaultItemAnimator());
     }
 

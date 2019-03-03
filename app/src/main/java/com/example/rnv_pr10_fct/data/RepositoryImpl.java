@@ -36,11 +36,6 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public long insertCompanies(Company... companies) {
-        return 0;
-    }
-
-    @Override
     public int updateCompany(Company company) {
         AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> companyDao.updateCompany(company));
         return 0;
@@ -57,26 +52,24 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public LiveData<List<Student>> queryStudents() {
-        return null;
+        return studentDao.queryStudents();
     }
 
     @Override
     public long insertStudent(Student student) {
-        return 0;
-    }
-
-    @Override
-    public long insertStudents(Student... students) {
+        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> studentDao.insertStudent(student));
         return 0;
     }
 
     @Override
     public int updateStudent(Student student) {
+        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> studentDao.updateStudent(student));
         return 0;
     }
 
     @Override
     public int deleteStudent(Student student) {
+        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> studentDao.deleteStudent(student));
         return 0;
     }
 }

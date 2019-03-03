@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/mnuGroup1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/companyMainFragment"
+            android:title="@string/mnu_txt_Company"/>
+        <item
+            android:id="@+id/studentMainFragment"
+            android:title="@string/mnu_txt_Student"/>
+    </group>
+
+</menu>

@@ -12,13 +12,11 @@ public interface Repository {
 
     LiveData<List<Company>> queryCompanies();
     void insertCompany(Company company);
-    long insertCompanies(Company... companies);
     int updateCompany(Company company);
     int deleteCompany(Company company);
 
     LiveData<List<Student>> queryStudents();
     long insertStudent(Student student);
-    long insertStudents(Student... students);
     int updateStudent(Student student);
     int deleteStudent(Student student);
 }

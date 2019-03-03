@@ -12,10 +12,29 @@
         <action
             android:id="@+id/action_companyMainFragment_to_companyDetails"
             app:destination="@id/companyDetails" />
+        <action
+            android:id="@+id/action_companyMainFragment_to_studentMainFragment"
+            app:destination="@id/studentMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/companyDetails"
         android:name="com.example.rnv_pr10_fct.ui.company.detailsCompany.CompanyDetails"
         android:label="company_details"
         tools:layout="@layout/company_details" />
+
+    <fragment
+        android:id="@+id/studentMainFragment"
+        android:name="com.example.rnv_pr10_fct.ui.student.StudentMainFragment"
+        android:label="StudentMainFragment">
+        <action
+            android:id="@+id/action_studentMainFragment_to_studentDetails"
+            app:destination="@id/studentDetails" />
+        <action
+            android:id="@+id/action_studentMainFragment_to_companyMainFragment"
+            app:destination="@id/companyMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentDetails"
+        android:name="com.example.rnv_pr10_fct.ui.student.detailsStudent.StudentDetails"
+        android:label="StudentDetails" />
 </navigation>

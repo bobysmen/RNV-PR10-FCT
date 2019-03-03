@@ -20,9 +20,6 @@ public interface StudentDao {
     @Insert
     long insertStudent(Student student);
 
-    @Insert
-    long[] insertStudents(Student... students);
-
     @Update
     int updateStudent(Student student);
 

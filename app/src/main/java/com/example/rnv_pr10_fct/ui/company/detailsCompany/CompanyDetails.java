@@ -157,9 +157,10 @@ public class CompanyDetails extends Fragment {
             if(viewModelCompany.isEdit()){
                 updateCompanyViewModel();
                 viewModelCompany.updateCompany(viewModelCompany.getCompany());
+                getFragmentManager().popBackStack();
             }else{
                 viewModelCompany.insertCompany(new Company(0, b.txtName.getText().toString(), b.txtCif.getText().toString(), b.txtAddress.getText().toString(), b.txtPhone.getText().toString(), b.txtEmail.getText().toString(), b.txtUrlLogo.getText().toString(), b.txtNameContact.getText().toString()));
-
+                getFragmentManager().popBackStack();
             }
 
             Toast.makeText(getContext(), "Save successfully", Toast.LENGTH_LONG).show();

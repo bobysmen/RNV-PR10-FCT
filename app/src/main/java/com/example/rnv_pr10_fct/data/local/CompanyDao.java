@@ -20,9 +20,6 @@ public interface CompanyDao {
     @Insert
     void insertCompany(Company company);
 
-    @Insert
-    long[] insertCompanies(Company... companies);
-
     @Update
     int updateCompany(Company company);
 

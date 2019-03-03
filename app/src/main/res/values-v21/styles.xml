@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- Debe pintarse lo que haya detrás de las barras del sistema -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <!-- La status bar será transparente -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+</resources>

@@ -9,4 +9,17 @@
     <string name="hint_company_name_contact">Name contact</string>
     <string name="hint_company_email">Email</string>
     <string name="msgError_main_form">Invalid data</string>
+    <string name="txt_addStudent_studentFragment">Add Student</string>
+    <string name="hint_student_name">Name Student</string>
+    <string name="hint_student_phoneStudent">Phone Number Student</string>
+    <string name="hint_student_email">Email Student</string>
+    <string name="hint_student_grade">Grade</string>
+    <string name="hint_student_nameTutor">Name Tutor</string>
+    <string name="hint_student_phoneTutor">Phone number Tutor</string>
+    <string name="hint_student_workHours">Work Hours</string>
+    <string name="mnu_txt_Company">List Company</string>
+    <string name="mnu_txt_Student">List Student</string>
+    <string name="main_open_navigation_drawer">Open navigation drawer</string>
+    <string name="main_close_navigation_drawer">Close navigation drawer</string>
+    <string name="lblSpinner_studentDetails">Select Company</string>
 </resources>

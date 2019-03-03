@@ -28,8 +28,6 @@ public class CompanyMainViewModel extends ViewModel {
         repository.insertCompany(company);
     }
 
-    //TODO Insertar Varias companies a la vez
-
     public int updateCompany(Company company){
         return repository.updateCompany(company);
     }
