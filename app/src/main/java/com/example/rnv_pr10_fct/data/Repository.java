@@ -2,6 +2,7 @@ package com.example.rnv_pr10_fct.data;
 
 import com.example.rnv_pr10_fct.data.local.model.Company;
 import com.example.rnv_pr10_fct.data.local.model.Student;
+import com.example.rnv_pr10_fct.data.local.model.Visit;
 
 import java.util.List;
 
@@ -19,4 +20,10 @@ public interface Repository {
     long insertStudent(Student student);
     int updateStudent(Student student);
     int deleteStudent(Student student);
+
+
+    LiveData<List<Visit>> queryVisits();
+    long insertVisit(Visit visit);
+    int updateVisit(Visit visit);
+    int deleteVisit(Visit visit);
 }

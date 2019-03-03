@@ -17,6 +17,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract CompanyDao companyDao();
     public abstract StudentDao studentDao();
+    public abstract VisitDao visitDao();
 
     public static AppDatabase getInstance(Context context) {
         if (instance == null) {

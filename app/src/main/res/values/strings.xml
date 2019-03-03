@@ -22,4 +22,5 @@
     <string name="main_open_navigation_drawer">Open navigation drawer</string>
     <string name="main_close_navigation_drawer">Close navigation drawer</string>
     <string name="lblSpinner_studentDetails">Select Company</string>
+    <string name="txt_addVisit_visitFragment">Add Visit</string>
 </resources>
