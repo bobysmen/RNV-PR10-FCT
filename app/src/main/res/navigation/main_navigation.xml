@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_companyMainFragment_to_studentMainFragment"
             app:destination="@id/studentMainFragment" />
+        <action
+            android:id="@+id/action_companyMainFragment_to_visitMainFragment"
+            app:destination="@id/visitMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/companyDetails"
@@ -32,9 +35,31 @@
         <action
             android:id="@+id/action_studentMainFragment_to_companyMainFragment"
             app:destination="@id/companyMainFragment" />
+        <action
+            android:id="@+id/action_studentMainFragment_to_visitMainFragment"
+            app:destination="@id/visitMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/studentDetails"
         android:name="com.example.rnv_pr10_fct.ui.student.detailsStudent.StudentDetails"
         android:label="StudentDetails" />
+    <fragment
+        android:id="@+id/visitMainFragment"
+        android:name="com.example.rnv_pr10_fct.ui.visit.VisitMainFragment"
+        android:label="visit_list_fragment"
+        tools:layout="@layout/visit_list_fragment" >
+        <action
+            android:id="@+id/action_visitMainFragment_to_studentMainFragment"
+            app:destination="@id/studentMainFragment" />
+        <action
+            android:id="@+id/action_visitMainFragment_to_companyMainFragment"
+            app:destination="@id/companyMainFragment" />
+        <action
+            android:id="@+id/action_visitMainFragment_to_visitDetails"
+            app:destination="@id/visitDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/visitDetails"
+        android:name="com.example.rnv_pr10_fct.ui.visit.detailsVisit.VisitDetails"
+        android:label="VisitDetails" />
 </navigation>

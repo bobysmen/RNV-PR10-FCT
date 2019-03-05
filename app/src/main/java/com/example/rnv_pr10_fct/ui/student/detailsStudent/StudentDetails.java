@@ -39,7 +39,7 @@ public class StudentDetails extends Fragment {
     private String nameCompanySelect;
     private StudentMainViewModel viewModelStudent;
     private List<Company> listCompanies;
-    private long idCompany;
+    private Long idCompany;
 
     @Nullable
     @Override
@@ -155,6 +155,7 @@ public class StudentDetails extends Fragment {
             listCompanies = new ArrayList<>();
             listCompanies.addAll(companies);
             List<String> nameCompanies = new ArrayList<>();
+            nameCompanies.add("Select Company");
             for (Company company: companies){
                 nameCompanies.add(company.getName());
             }
@@ -167,6 +168,8 @@ public class StudentDetails extends Fragment {
                 for(Company company: companies){
                     if(viewModelStudent.getStudent().getIdCompany() == company.getId()){
                         nameCompanySpinner = company.getName();
+                    }else{
+                        nameCompanySpinner = "Select Company";
                     }
                 }
 
@@ -183,7 +186,7 @@ public class StudentDetails extends Fragment {
                 getFragmentManager().popBackStack();
             }else{
                 idCompany = idCompany(nameCompanySelect);
-                viewModelStudent.insertStudent(new Student(0, b.txtName.getText().toString(), b.txtPhone.getText().toString(), b.txtEmail.getText().toString(), b.txtGrade.getText().toString(), b.txtNameTutor.getText().toString(), b.txtPhoneTutor.getText().toString(), b.txtWorkHours.getText().toString(), idCompany));
+                viewModelStudent.insertStudent(new Student(b.txtName.getText().toString(), b.txtPhone.getText().toString(), b.txtEmail.getText().toString(), b.txtGrade.getText().toString(), b.txtNameTutor.getText().toString(), b.txtPhoneTutor.getText().toString(), b.txtWorkHours.getText().toString(), idCompany));
                 getFragmentManager().popBackStack();
             }
 
@@ -194,8 +197,8 @@ public class StudentDetails extends Fragment {
         }
     }
 
-    private long idCompany(String nameCompanySelect) {
-        long result = -1;
+    private Long idCompany(String nameCompanySelect) {
+        Long result = -1L;
         for (Company company: listCompanies){
             if(company.getName().equals(nameCompanySelect)){
                 result = company.getId();

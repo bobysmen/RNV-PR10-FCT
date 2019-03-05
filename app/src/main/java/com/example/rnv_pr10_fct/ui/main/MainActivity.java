@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
         AppBarConfiguration appBarConfiguration =
                 new AppBarConfiguration.Builder(
-                        R.id.companyMainFragment, R.id.studentMainFragment)
+                        R.id.companyMainFragment, R.id.studentMainFragment, R.id.visitMainFragment)
                         .setDrawerLayout(drawer)
                         .build();
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);

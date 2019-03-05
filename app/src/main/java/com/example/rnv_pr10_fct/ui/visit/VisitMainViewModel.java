@@ -20,9 +20,10 @@ public class VisitMainViewModel extends ViewModel {
         visits = repository.queryVisits();
     }
 
-    public LiveData<List<Visit>> getStudents(){
+    public LiveData<List<Visit>> getVisits(){
         return visits;
     }
+
 
     public void insertVisit(Visit visit){
         repository.insertVisit(visit);

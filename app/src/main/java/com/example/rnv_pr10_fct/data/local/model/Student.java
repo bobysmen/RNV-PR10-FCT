@@ -6,15 +6,19 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import static androidx.room.ForeignKey.SET_NULL;
+
 @Entity(indices = @Index("idCompany"),
         foreignKeys = @ForeignKey(entity = Company.class,
                                     parentColumns = "id",
-                                    childColumns = "idCompany"))
+                                    childColumns = "idCompany",
+                                    onDelete = SET_NULL,
+                                    onUpdate = SET_NULL))
 public class Student {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private long id;
+    private Long id;
 
     @ColumnInfo(name = "name")
     private String name;
@@ -38,10 +42,9 @@ public class Student {
     private String workHours;
 
     @ColumnInfo(name = "idCompany")
-    private long idCompany;
+    private Long idCompany;
 
-    public Student(long id, String name, String phone, String email, String grade, String nameTutor, String phoneTutor, String workHours, long idCompany) {
-        this.id = id;
+    public Student(String name, String phone, String email, String grade, String nameTutor, String phoneTutor, String workHours, Long idCompany) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -52,11 +55,11 @@ public class Student {
         this.idCompany = idCompany;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -108,11 +111,11 @@ public class Student {
         this.workHours = workHours;
     }
 
-    public long getIdCompany() {
+    public Long getIdCompany() {
         return idCompany;
     }
 
-    public void setIdCompany(long idCompany) {
+    public void setIdCompany(Long idCompany) {
         this.idCompany = idCompany;
     }
 

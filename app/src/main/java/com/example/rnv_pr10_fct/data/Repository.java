@@ -17,6 +17,7 @@ public interface Repository {
     int deleteCompany(Company company);
 
     LiveData<List<Student>> queryStudents();
+    String getNameStudent(Long id);
     long insertStudent(Student student);
     int updateStudent(Student student);
     int deleteStudent(Student student);

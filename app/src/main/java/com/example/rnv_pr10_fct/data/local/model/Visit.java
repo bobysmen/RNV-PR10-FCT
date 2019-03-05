@@ -6,6 +6,7 @@ import java.util.Date;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -13,16 +14,16 @@ public class Visit {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private long id;
+    private Long id;
 
     @ColumnInfo(name = "day")
-    private LocalDate day;
+    private String date;
 
     @ColumnInfo(name = "startTime")
-    private LocalTime startTime;
+    private String startTime;
 
     @ColumnInfo(name = "endTime")
-    private LocalTime endTime;
+    private String endTime;
 
     @ColumnInfo(name = "comment")
     private String comment;
@@ -31,37 +32,49 @@ public class Visit {
     private boolean visit;
 
     @ColumnInfo(name = "idStudent")
-    private long idStudent;
+    private Long idStudent;
 
-    public long getId() {
+    @Ignore
+    private String nameStudent;
+
+    public Visit(String date, String startTime, String endTime, String comment, boolean visit, Long idStudent) {
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.comment = comment;
+        this.visit = visit;
+        this.idStudent = idStudent;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public LocalDate getDay() {
-        return day;
+    public String getDate() {
+        return date;
     }
 
-    public void setDay(LocalDate day) {
-        this.day = day;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public LocalTime getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalTime startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public LocalTime getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalTime endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
@@ -81,11 +94,19 @@ public class Visit {
         this.visit = visit;
     }
 
-    public long getIdStudent() {
+    public Long getIdStudent() {
         return idStudent;
     }
 
-    public void setIdStudent(long idStudent) {
+    public void setIdStudent(Long idStudent) {
         this.idStudent = idStudent;
+    }
+
+    public String getNameStudent() {
+        return nameStudent;
+    }
+
+    public void setNameStudent(String nameStudent) {
+        this.nameStudent = nameStudent;
     }
 }

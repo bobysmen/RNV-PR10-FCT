@@ -63,6 +63,11 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
+    public String getNameStudent(Long id) {
+        return studentDao.getNameStudent(id);
+    }
+
+    @Override
     public long insertStudent(Student student) {
         AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> studentDao.insertStudent(student));
         return 0;
@@ -79,6 +84,7 @@ public class RepositoryImpl implements Repository {
         AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> studentDao.deleteStudent(student));
         return 0;
     }
+
 
     @Override
     public LiveData<List<Visit>> queryVisits() {

@@ -13,6 +13,10 @@
         <item
             android:id="@+id/studentMainFragment"
             android:title="@string/mnu_txt_Student"/>
+
+        <item
+            android:id="@+id/visitMainFragment"
+            android:title="@string/mnu_txt_visit"/>
     </group>
 
 </menu>

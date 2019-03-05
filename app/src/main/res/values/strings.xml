@@ -23,4 +23,10 @@
     <string name="main_close_navigation_drawer">Close navigation drawer</string>
     <string name="lblSpinner_studentDetails">Select Company</string>
     <string name="txt_addVisit_visitFragment">Add Visit</string>
+    <string name="mnu_txt_visit">List Visit</string>
+    <string name="lblSpinner_Visit">Select Student</string>
+    <string name="hint_visit_date">Date</string>
+    <string name="hint_visit_timeStart">Select Time Start</string>
+    <string name="hint_visit_timeEnd">Select Time End</string>
+    <string name="hint_visit_comment">Comment</string>
 </resources>

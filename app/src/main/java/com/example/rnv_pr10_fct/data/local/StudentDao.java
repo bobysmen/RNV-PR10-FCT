@@ -17,6 +17,9 @@ public interface StudentDao {
     @Query("Select * from Student")
     LiveData<List<Student>> queryStudents();
 
+    @Query("Select name from Student where id=:id")
+    String getNameStudent(Long id);
+
     @Insert
     long insertStudent(Student student);
 

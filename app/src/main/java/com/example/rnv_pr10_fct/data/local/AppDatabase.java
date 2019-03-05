@@ -4,12 +4,13 @@ import android.content.Context;
 
 import com.example.rnv_pr10_fct.data.local.model.Company;
 import com.example.rnv_pr10_fct.data.local.model.Student;
+import com.example.rnv_pr10_fct.data.local.model.Visit;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Company.class, Student.class}, version = 1, exportSchema = false)
+@Database(entities = {Company.class, Student.class, Visit.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "DATABASE_NAME";
@@ -24,7 +25,7 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 if (instance == null) {
                     instance = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class, DATABASE_NAME).build();
+                            AppDatabase.class, DATABASE_NAME).allowMainThreadQueries().build();
                 }
             }
         }

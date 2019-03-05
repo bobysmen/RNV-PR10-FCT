@@ -159,7 +159,7 @@ public class CompanyDetails extends Fragment {
                 viewModelCompany.updateCompany(viewModelCompany.getCompany());
                 getFragmentManager().popBackStack();
             }else{
-                viewModelCompany.insertCompany(new Company(0, b.txtName.getText().toString(), b.txtCif.getText().toString(), b.txtAddress.getText().toString(), b.txtPhone.getText().toString(), b.txtEmail.getText().toString(), b.txtUrlLogo.getText().toString(), b.txtNameContact.getText().toString()));
+                viewModelCompany.insertCompany(new Company(b.txtName.getText().toString(), b.txtCif.getText().toString(), b.txtAddress.getText().toString(), b.txtPhone.getText().toString(), b.txtEmail.getText().toString(), b.txtUrlLogo.getText().toString(), b.txtNameContact.getText().toString()));
                 getFragmentManager().popBackStack();
             }
 

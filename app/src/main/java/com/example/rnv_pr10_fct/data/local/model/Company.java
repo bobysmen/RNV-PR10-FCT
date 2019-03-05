@@ -9,7 +9,7 @@ public class Company {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private long id;
+    private Long id;
 
     @ColumnInfo(name = "name")
     private String name;
@@ -32,8 +32,7 @@ public class Company {
     @ColumnInfo(name = "contactName")
     private String contactName;
 
-    public Company(long id, String name, String cif, String address, String phone, String email, String urlLogo, String contactName) {
-        this.id = id;
+    public Company(String name, String cif, String address, String phone, String email, String urlLogo, String contactName) {
         this.name = name;
         this.cif = cif;
         this.address = address;
@@ -43,11 +42,11 @@ public class Company {
         this.contactName = contactName;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -24,6 +24,10 @@ public class StudentMainViewModel extends ViewModel {
         return students;
     }
 
+    public String getNameStudent(Long id){
+        return repository.getNameStudent(id);
+    }
+
     public void insertStudent(Student student){
         repository.insertStudent(student);
     }
