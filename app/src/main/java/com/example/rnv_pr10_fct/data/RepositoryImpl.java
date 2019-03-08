@@ -38,6 +38,11 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
+    public String getNameCompany(Long id) {
+        return companyDao.getNameCompany(id);
+    }
+
+    @Override
     public void insertCompany(Company company) {
         AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> companyDao.insertCompany(company));
     }

@@ -17,6 +17,9 @@ public interface CompanyDao {
     @Query("Select * from Company")
     LiveData<List<Company>> queryCompanies();
 
+    @Query("Select name from Company where id=:id")
+    String getNameCompany(Long id);
+
     @Insert
     void insertCompany(Company company);
 

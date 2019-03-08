@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">FCT</string>
+    <string name="txt_add_FragmentCompany">Añadir Compañia</string>
+    <string name="hint_company_name">Nombre Compañia</string>
+    <string name="hint_company_cif">CIF</string>
+    <string name="hint_company_address">Direccion</string>
+    <string name="hint_company_phone">Numero Telefono</string>
+    <string name="hint_company_url">Url Logo</string>
+    <string name="hint_company_name_contact">Nombre Contacto</string>
+    <string name="hint_company_email">Email</string>
+    <string name="msgError_main_form">Dato Erroneo</string>
+    <string name="txt_addStudent_studentFragment">Añadir Estudiante</string>
+    <string name="hint_student_name">Nombre Estudiante</string>
+    <string name="hint_student_phoneStudent">Numero de Telefono Estudiante</string>
+    <string name="hint_student_email">Email Estudiante</string>
+    <string name="hint_student_grade">Grado</string>
+    <string name="hint_student_nameTutor">Nombre Tutor</string>
+    <string name="hint_student_phoneTutor">Telefono Tutor</string>
+    <string name="hint_student_workHours">Horario Trabajo</string>
+    <string name="mnu_txt_Company">Lista Compañia</string>
+    <string name="mnu_txt_Student">Lista Estudiante</string>
+    <string name="main_open_navigation_drawer">Open navigation drawer</string>
+    <string name="main_close_navigation_drawer">Close navigation drawer</string>
+    <string name="lblSpinner_studentDetails">Select Company</string>
+    <string name="txt_addVisit_visitFragment">Sin visitas</string>
+    <string name="mnu_txt_visit">Lista Visitas</string>
+    <string name="lblSpinner_Visit">Select Student</string>
+    <string name="hint_visit_date">Fecha</string>
+    <string name="hint_visit_timeStart">Hora Comienzo</string>
+    <string name="hint_visit_timeEnd">Hora Fin</string>
+    <string name="hint_visit_comment">Comentarios</string>
+    <string name="mnu_txt_nextVisit">Lista Proximas Visitas</string>
+    <string name="mnu_preference_activityMain">Settings</string>
+
+    <string-array name="pref_listEntries">
+        <item>Lista Compañias</item>
+        <item>Lista Estudiantes</item>
+        <item>Lista Visitas</item>
+        <item>Lista Proximas Visitas</item>
+    </string-array>
+    <string-array name="pref_listEntryValues">
+        <item>companies</item>
+        <item>students</item>
+        <item>visits</item>
+        <item>nextVisits</item>
+    </string-array>
+    <string name="pref_listDefaultValue" translatable="false">nextVisits</string>
+    <string name="pref_listTitle">Pantalla Principal</string>
+    <string name="pref_listKey">listPreference</string>
+    <string name="lbl_companyFragment">Lista Compañias</string>
+    <string name="lbl_detailsCompanyFragment">Detalles Compañia</string>
+    <string name="lbl_studentFragment">Lista Estudiantes</string>
+    <string name="lbl_detailsStudentFragment">Detalles Estudiante</string>
+    <string name="lbl_visitsFragment">Lista Visitas</string>
+    <string name="lbl_detailsVisitsFragment">Detalles Visita</string>
+    <string name="lbl_nextVisitsFragment">Lista Proximas Visitas</string>
+    <string name="msg_saveSucces">Guardado Satisfactoriamente</string>
+    <string name="msg_saveError">Error, Revisa los Campos</string>
+    <string name="initialTxt_spinnerCompany">Selecciona una compañia</string>
+    <string name="msg_companySelect_spinner_Student">Error, Selecciona una compañia</string>
+    <string name="lbl_Company_studentAdapter">Company:</string>
+</resources>

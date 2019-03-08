@@ -47,4 +47,16 @@
     <string name="pref_listDefaultValue" translatable="false">nextVisits</string>
     <string name="pref_listTitle">Home screen</string>
     <string name="pref_listKey">listPreference</string>
+    <string name="lbl_companyFragment">List Companies</string>
+    <string name="lbl_detailsCompanyFragment">Company Details</string>
+    <string name="lbl_studentFragment">List Students</string>
+    <string name="lbl_detailsStudentFragment">Student Details</string>
+    <string name="lbl_visitsFragment">List Visits</string>
+    <string name="lbl_detailsVisitsFragment">Visit Details</string>
+    <string name="lbl_nextVisitsFragment">List Next Visits</string>
+    <string name="msg_saveSucces">Save successfully</string>
+    <string name="msg_saveError">Error, check fields</string>
+    <string name="initialTxt_spinnerCompany">Select Company</string>
+    <string name="msg_companySelect_spinner_Student">Error, Select Company</string>
+    <string name="lbl_Company_studentAdapter">Company:</string>
 </resources>

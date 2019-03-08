@@ -12,6 +12,7 @@ public interface Repository {
 
 
     LiveData<List<Company>> queryCompanies();
+    String getNameCompany(Long id);
     void insertCompany(Company company);
     int updateCompany(Company company);
     int deleteCompany(Company company);

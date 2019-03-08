@@ -24,6 +24,10 @@ public class CompanyMainViewModel extends ViewModel {
         return companies;
     }
 
+    public String getNameCompany(Long id){
+        return repository.getNameCompany(id);
+    }
+
     public void insertCompany(Company company){
         repository.insertCompany(company);
     }

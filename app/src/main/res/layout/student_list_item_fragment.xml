@@ -13,4 +13,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         tools:text="Ruben Nuñez" />
 
+    <TextView
+        android:id="@+id/lblCompany"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Company"/>
+
 </LinearLayout>

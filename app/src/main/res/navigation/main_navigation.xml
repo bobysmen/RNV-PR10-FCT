@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/companyMainFragment"
         android:name="com.example.rnv_pr10_fct.ui.company.CompanyMainFragment"
-        android:label="CompanyMainFragment">
+        android:label="@string/lbl_companyFragment">
         <action
             android:id="@+id/action_companyMainFragment_to_companyDetails"
             app:destination="@id/companyDetails" />
@@ -16,13 +16,13 @@
     <fragment
         android:id="@+id/companyDetails"
         android:name="com.example.rnv_pr10_fct.ui.company.detailsCompany.CompanyDetails"
-        android:label="company_details"
+        android:label="@string/lbl_detailsCompanyFragment"
         tools:layout="@layout/company_details" />
 
     <fragment
         android:id="@+id/studentMainFragment"
         android:name="com.example.rnv_pr10_fct.ui.student.StudentMainFragment"
-        android:label="StudentMainFragment">
+        android:label="@string/lbl_studentFragment">
         <action
             android:id="@+id/action_studentMainFragment_to_studentDetails"
             app:destination="@id/studentDetails" />
@@ -30,11 +30,11 @@
     <fragment
         android:id="@+id/studentDetails"
         android:name="com.example.rnv_pr10_fct.ui.student.detailsStudent.StudentDetails"
-        android:label="StudentDetails" />
+        android:label="@string/lbl_detailsStudentFragment" />
     <fragment
         android:id="@+id/visitMainFragment"
         android:name="com.example.rnv_pr10_fct.ui.visit.VisitMainFragment"
-        android:label="visit_list_fragment"
+        android:label="@string/lbl_visitsFragment"
         tools:layout="@layout/visit_list_fragment" >
         <action
             android:id="@+id/action_visitMainFragment_to_visitDetails"
@@ -43,11 +43,11 @@
     <fragment
         android:id="@+id/visitDetails"
         android:name="com.example.rnv_pr10_fct.ui.visit.detailsVisit.VisitDetails"
-        android:label="VisitDetails" />
+        android:label="@string/lbl_detailsVisitsFragment" />
     <fragment
         android:id="@+id/nextVisitMainFragment"
         android:name="com.example.rnv_pr10_fct.ui.nextVisit.NextVisitMainFragment"
-        android:label="next_visit_list_fragment"
+        android:label="@string/lbl_nextVisitsFragment"
         tools:layout="@layout/next_visit_list_fragment" />
     <fragment
         android:id="@+id/preference"

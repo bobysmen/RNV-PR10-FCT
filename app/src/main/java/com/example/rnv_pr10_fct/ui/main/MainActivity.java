@@ -96,13 +96,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
     private void setupNavigationDrawer() {
-//        drawer = ActivityCompat.requireViewById(this, R.id.drawerLayout);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.main_open_navigation_drawer, R.string.main_close_navigation_drawer);
-//        drawer.addDrawerListener(toggle);
-//        toggle.syncState();
-//        navigationView = ActivityCompat.requireViewById(this, R.id.navigationView);
-//        navigationView.setNavigationItemSelectedListener(this);
-
         NavigationView navigationView =
                 ActivityCompat.requireViewById(this, R.id.navigationView);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -119,31 +112,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                         .build();
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
     }
-
-//    @Override
-//    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-//        switch (menuItem.getItemId()){
-//            case R.id.mnuCompany:
-//                navigateToCompany();
-//                menuItem.setChecked(true);
-//                break;
-//            case R.id.mnuStudent:
-//                navigateToStudent();
-//                menuItem.setChecked(true);
-//                break;
-//        }
-//        drawer.closeDrawer(GravityCompat.START);
-//        return true;
-//    }
-
-//    private void navigateToStudent() {
-//        Navigation.findNavController(this, R.id.navHostFragment).navigate(R.id.action_companyMainFragment_to_studentMainFragment);
-//    }
-//
-//    private void navigateToCompany() {
-//        Navigation.findNavController(this, R.id.navHostFragment).navigate(R.id.action_studentMainFragment_to_companyMainFragment);
-//    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

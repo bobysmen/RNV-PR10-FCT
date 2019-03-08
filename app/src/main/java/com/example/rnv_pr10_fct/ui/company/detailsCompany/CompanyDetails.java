@@ -163,10 +163,10 @@ public class CompanyDetails extends Fragment {
                 getFragmentManager().popBackStack();
             }
 
-            Toast.makeText(getContext(), "Save successfully", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), getString(R.string.msg_saveSucces), Toast.LENGTH_LONG).show();
 
         }else{
-            Toast.makeText(getContext(), "Error, check fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), getString(R.string.msg_saveError), Toast.LENGTH_LONG).show();
         }
     }
 

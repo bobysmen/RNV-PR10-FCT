@@ -79,9 +79,9 @@ public class NextVisitMainAdapter extends ListAdapter<Visit, NextVisitMainAdapte
         void bind(Visit visit){
             lblName.setText(visit.getNameStudent());
             if (!visit.getDate().equals("")) {
-                lblDate.setText(visit.getDate());
+                lblDate.setText(String.format("Next Visit: %s", visit.getDate()));
             }else{
-                lblDate.setText("Hacer Visita");
+                lblDate.setText("Do Visit");
             }
         }
     }

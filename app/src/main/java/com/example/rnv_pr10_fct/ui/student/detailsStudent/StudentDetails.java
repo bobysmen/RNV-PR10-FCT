@@ -155,7 +155,7 @@ public class StudentDetails extends Fragment {
             listCompanies = new ArrayList<>();
             listCompanies.addAll(companies);
             List<String> nameCompanies = new ArrayList<>();
-            nameCompanies.add("Select Company");
+            nameCompanies.add(getString(R.string.initialTxt_spinnerCompany));
             for (Company company: companies){
                 nameCompanies.add(company.getName());
             }
@@ -165,16 +165,7 @@ public class StudentDetails extends Fragment {
 
             //fill Spinner
             if(viewModelStudent.isEdit()){
-                String nameCompanySpinner = "";
-                for(Company company: companies){
-                    if(viewModelStudent.getStudent().getIdCompany() == company.getId()){
-                        nameCompanySpinner = company.getName();
-                    }else{
-                        nameCompanySpinner = "Select Company";
-                    }
-                }
-
-                b.spinnerCompany.setSelection(dataAdapter.getPosition(nameCompanySpinner));
+                b.spinnerCompany.setSelection(dataAdapter.getPosition(viewModelStudent.getStudent().getNameCompany()));
             }
         });
     }
@@ -182,19 +173,27 @@ public class StudentDetails extends Fragment {
     private void saveStudent() {
         if (validForm()) {
             if(viewModelStudent.isEdit()){
-                updateStudentViewModel();
-                viewModelStudent.updateStudent(viewModelStudent.getStudent());
-                getFragmentManager().popBackStack();
+                if (!nameCompanySelect.equals(getString(R.string.initialTxt_spinnerCompany))) {
+                    updateStudentViewModel();
+                    viewModelStudent.updateStudent(viewModelStudent.getStudent());
+                    Toast.makeText(getContext(), getString(R.string.msg_saveSucces), Toast.LENGTH_LONG).show();
+                    getFragmentManager().popBackStack();
+                }else{
+                    Toast.makeText(getContext(), getString(R.string.msg_companySelect_spinner_Student), Toast.LENGTH_LONG).show();
+                }
             }else{
-                idCompany = idCompany(nameCompanySelect);
-                viewModelStudent.insertStudent(new Student(b.txtName.getText().toString(), b.txtPhone.getText().toString(), b.txtEmail.getText().toString(), b.txtGrade.getText().toString(), b.txtNameTutor.getText().toString(), b.txtPhoneTutor.getText().toString(), b.txtWorkHours.getText().toString(), idCompany));
-                getFragmentManager().popBackStack();
+                if (!nameCompanySelect.equals(getString(R.string.initialTxt_spinnerCompany))) {
+                    idCompany = idCompany(nameCompanySelect);
+                    viewModelStudent.insertStudent(new Student(b.txtName.getText().toString(), b.txtPhone.getText().toString(), b.txtEmail.getText().toString(), b.txtGrade.getText().toString(), b.txtNameTutor.getText().toString(), b.txtPhoneTutor.getText().toString(), b.txtWorkHours.getText().toString(), idCompany));
+                    Toast.makeText(getContext(), getString(R.string.msg_saveSucces), Toast.LENGTH_LONG).show();
+                    getFragmentManager().popBackStack();
+                }else {
+                    Toast.makeText(getContext(), getString(R.string.msg_companySelect_spinner_Student), Toast.LENGTH_LONG).show();
+                }
             }
 
-            Toast.makeText(getContext(), "Save successfully", Toast.LENGTH_LONG).show();
-
         }else{
-            Toast.makeText(getContext(), "Error, check fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), getString(R.string.msg_saveError), Toast.LENGTH_LONG).show();
         }
     }
 

@@ -10,6 +10,8 @@ import com.example.rnv_pr10_fct.R;
 import com.example.rnv_pr10_fct.data.RepositoryImpl;
 import com.example.rnv_pr10_fct.data.local.AppDatabase;
 import com.example.rnv_pr10_fct.data.local.model.Student;
+import com.example.rnv_pr10_fct.ui.company.CompanyMainViewModel;
+import com.example.rnv_pr10_fct.ui.company.CompanyMainViewModelFactory;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.annotation.NonNull;
@@ -31,6 +33,7 @@ public class StudentMainFragment extends Fragment {
     private RecyclerView lstStudent;
     private TextView lblEmptyView;
     private FloatingActionButton fabAddStudent;
+    private CompanyMainViewModel viewModelCompany;
 
 
     @Nullable
@@ -46,6 +49,11 @@ public class StudentMainFragment extends Fragment {
                 new StudentMainViewModelFactory(
                         new RepositoryImpl(
                                 AppDatabase.getInstance(requireContext().getApplicationContext()).studentDao()))).get(StudentMainViewModel.class);
+
+        viewModelCompany = ViewModelProviders.of(requireActivity(),
+                new CompanyMainViewModelFactory(
+                        new RepositoryImpl(
+                                AppDatabase.getInstance(requireContext().getApplicationContext()).companyDao()))).get(CompanyMainViewModel.class);
         swipeItemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -91,6 +99,10 @@ public class StudentMainFragment extends Fragment {
 
     private void observeStudents() {
         viewModel.getStudents().observe(this, students -> {
+            for(Student student: students){
+                student.setNameCompany(viewModelCompany.getNameCompany(student.getIdCompany()));
+            }
+
             listAdapter.submitList(students);
             lblEmptyView.setVisibility(students.isEmpty() ? View.VISIBLE : View.INVISIBLE);
         });

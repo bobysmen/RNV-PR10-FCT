@@ -68,15 +68,18 @@ public class StudentMainAdapter extends ListAdapter<Student, StudentMainAdapter.
     static class ViewHolder extends RecyclerView.ViewHolder{
 
         private final TextView lblName;
+        private final TextView lblCompany;
 
         public ViewHolder(@NonNull View itemView, OnStudentClickListenerEdit onStudentClickListenerEdit) {
             super(itemView);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
+            lblCompany = ViewCompat.requireViewById(itemView, R.id.lblCompany);
             itemView.setOnClickListener(v -> onStudentClickListenerEdit.onItemClick(getAdapterPosition()));
         }
 
         void bind(Student student){
             lblName.setText(student.getName());
+            lblCompany.setText(String.format("Company: %s", student.getNameCompany()));
         }
     }
 }

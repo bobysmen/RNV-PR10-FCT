@@ -3,6 +3,7 @@ package com.example.rnv_pr10_fct.data.local.model;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
@@ -43,6 +44,9 @@ public class Student {
 
     @ColumnInfo(name = "idCompany")
     private Long idCompany;
+
+    @Ignore
+    private String nameCompany;
 
     public Student(String name, String phone, String email, String grade, String nameTutor, String phoneTutor, String workHours, Long idCompany) {
         this.name = name;
@@ -125,5 +129,13 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getNameCompany() {
+        return nameCompany;
+    }
+
+    public void setNameCompany(String nameCompany) {
+        this.nameCompany = nameCompany;
     }
 }

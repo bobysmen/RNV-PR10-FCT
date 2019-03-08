@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.rnv_pr10_fct.R;
 import com.example.rnv_pr10_fct.base.DatePickerDialogFragment;
@@ -210,6 +211,10 @@ public class VisitDetails extends Fragment {
                 viewModelNextVisit.insertVisit(new Visit(b.txtDateVisit.getText().toString(), b.txtTimeStartVisit.getText().toString(), b.txtTimeEndVisit.getText().toString(), b.txtComment.getText().toString(), idStudent));
                 getFragmentManager().popBackStack();
             }
+
+            Toast.makeText(getContext(), getString(R.string.msg_saveSucces), Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(getContext(), getString(R.string.msg_saveError), Toast.LENGTH_LONG).show();
         }
     }
 

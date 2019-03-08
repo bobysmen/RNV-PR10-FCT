@@ -76,7 +76,7 @@ public class VisitMainAdapter extends ListAdapter<Visit, VisitMainAdapter.ViewHo
 
         void bind(Visit visit){
             lblName.setText(visit.getNameStudent());
-            lblDate.setText(visit.getDate());
+            lblDate.setText(String.format("Date: %s",visit.getDate()));
         }
     }
 }
