@@ -22,11 +22,29 @@
     <string name="main_open_navigation_drawer">Open navigation drawer</string>
     <string name="main_close_navigation_drawer">Close navigation drawer</string>
     <string name="lblSpinner_studentDetails">Select Company</string>
-    <string name="txt_addVisit_visitFragment">Add Visit</string>
+    <string name="txt_addVisit_visitFragment">No visits</string>
     <string name="mnu_txt_visit">List Visit</string>
     <string name="lblSpinner_Visit">Select Student</string>
     <string name="hint_visit_date">Date</string>
     <string name="hint_visit_timeStart">Select Time Start</string>
     <string name="hint_visit_timeEnd">Select Time End</string>
     <string name="hint_visit_comment">Comment</string>
+    <string name="mnu_txt_nextVisit">List Next Visit</string>
+    <string name="mnu_preference_activityMain">Settings</string>
+
+    <string-array name="pref_listEntries">
+        <item>List Companies</item>
+        <item>List Students</item>
+        <item>List Visits</item>
+        <item>List Next Visits</item>
+    </string-array>
+    <string-array name="pref_listEntryValues">
+        <item>companies</item>
+        <item>students</item>
+        <item>visits</item>
+        <item>nextVisits</item>
+    </string-array>
+    <string name="pref_listDefaultValue" translatable="false">nextVisits</string>
+    <string name="pref_listTitle">Home screen</string>
+    <string name="pref_listKey">listPreference</string>
 </resources>

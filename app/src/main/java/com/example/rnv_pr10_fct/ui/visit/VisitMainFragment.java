@@ -32,7 +32,6 @@ public class VisitMainFragment extends Fragment {
     private VisitMainAdapter listAdapter;
     private RecyclerView lstVisit;
     private TextView lblEmptyView;
-    private FloatingActionButton fabAddVisit;
     private StudentMainViewModel viewModelStudend;
 
     @Nullable
@@ -53,6 +52,8 @@ public class VisitMainFragment extends Fragment {
                 new StudentMainViewModelFactory(
                         new RepositoryImpl(
                                 AppDatabase.getInstance(requireContext().getApplicationContext()).studentDao()))).get(StudentMainViewModel.class);
+
+        viewModel.setEdit(false);
         swipeItemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -67,15 +68,12 @@ public class VisitMainFragment extends Fragment {
 
         setupViews(getView());
         observeVisit();
+        swipeItemTouchHelper.attachToRecyclerView(lstVisit);
     }
 
     private void setupViews(View view) {
         lblEmptyView = ViewCompat.requireViewById(view, R.id.lblEmptyView);
         lstVisit = ViewCompat.requireViewById(view, R.id.lstVisit);
-        fabAddVisit = ViewCompat.requireViewById(view, R.id.fabAddVisit);
-
-        lblEmptyView.setOnClickListener(this::addNewVisit);
-        fabAddVisit.setOnClickListener(this::addNewVisit);
 
         lstVisit.setHasFixedSize(true);
         listAdapter = new VisitMainAdapter(position -> editVisit(listAdapter.getItem(position)));
@@ -87,7 +85,7 @@ public class VisitMainFragment extends Fragment {
     private void editVisit(Visit visit) {
         viewModel.setEdit(true);
         viewModel.setVisit(visit);
-        //TODO Navigation
+        Navigation.findNavController(getView()).navigate(R.id.visitDetails);
     }
 
     private void observeVisit() {
@@ -98,10 +96,5 @@ public class VisitMainFragment extends Fragment {
             listAdapter.submitList(visits);
             lblEmptyView.setVisibility(visits.isEmpty() ? View.VISIBLE : View.INVISIBLE);
         });
-    }
-
-    private void addNewVisit(View view) {
-        viewModel.setEdit(false);
-        Navigation.findNavController(view).navigate(R.id.visitDetails);
     }
 }

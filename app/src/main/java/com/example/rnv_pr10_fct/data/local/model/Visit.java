@@ -28,21 +28,17 @@ public class Visit {
     @ColumnInfo(name = "comment")
     private String comment;
 
-    @ColumnInfo(name = "visit")
-    private boolean visit;
-
     @ColumnInfo(name = "idStudent")
     private Long idStudent;
 
     @Ignore
     private String nameStudent;
 
-    public Visit(String date, String startTime, String endTime, String comment, boolean visit, Long idStudent) {
+    public Visit(String date, String startTime, String endTime, String comment, Long idStudent) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.comment = comment;
-        this.visit = visit;
         this.idStudent = idStudent;
     }
 
@@ -84,14 +80,6 @@ public class Visit {
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public boolean isVisit() {
-        return visit;
-    }
-
-    public void setVisit(boolean visit) {
-        this.visit = visit;
     }
 
     public Long getIdStudent() {

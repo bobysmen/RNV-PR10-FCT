@@ -14,7 +14,7 @@
 
         <TextView
             android:id="@+id/lblSpinnerStudent"
-            tools:text="Select Company"
+            tools:text="Select Student"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

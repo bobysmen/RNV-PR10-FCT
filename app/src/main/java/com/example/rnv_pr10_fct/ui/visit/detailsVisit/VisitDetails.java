@@ -3,6 +3,7 @@ package com.example.rnv_pr10_fct.ui.visit.detailsVisit;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
+import com.example.rnv_pr10_fct.R;
 import com.example.rnv_pr10_fct.base.DatePickerDialogFragment;
 import com.example.rnv_pr10_fct.base.TimePickerDialogFragment;
 import com.example.rnv_pr10_fct.data.RepositoryImpl;
@@ -18,10 +20,14 @@ import com.example.rnv_pr10_fct.data.local.AppDatabase;
 import com.example.rnv_pr10_fct.data.local.model.Student;
 import com.example.rnv_pr10_fct.data.local.model.Visit;
 import com.example.rnv_pr10_fct.databinding.VisitDetailsBinding;
+import com.example.rnv_pr10_fct.ui.nextVisit.NextVisitMainViewModel;
+import com.example.rnv_pr10_fct.ui.nextVisit.NextVisitMainViewModelFactory;
 import com.example.rnv_pr10_fct.ui.student.StudentMainViewModel;
 import com.example.rnv_pr10_fct.ui.student.StudentMainViewModelFactory;
 import com.example.rnv_pr10_fct.ui.visit.VisitMainViewModel;
 import com.example.rnv_pr10_fct.ui.visit.VisitMainViewModelFactory;
+import com.example.rnv_pr10_fct.utils.TextViewUtils;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -44,6 +50,7 @@ public class VisitDetails extends Fragment {
     private ArrayList<Student> listStudent;
     private VisitMainViewModel viewModelVisit;
     private Long idStudent;
+    private NextVisitMainViewModel viewModelNextVisit;
 
 
     @Nullable
@@ -65,8 +72,51 @@ public class VisitDetails extends Fragment {
                 new VisitMainViewModelFactory(
                         new RepositoryImpl(
                                 AppDatabase.getInstance(requireContext().getApplicationContext()).visitDao()))).get(VisitMainViewModel.class);
+        viewModelNextVisit = ViewModelProviders.of(requireActivity(),
+                new NextVisitMainViewModelFactory(
+                        new RepositoryImpl(
+                                AppDatabase.getInstance(requireContext().getApplicationContext()).visitDao()))).get(NextVisitMainViewModel.class);
+
         setupViews();
         observeStudent();
+
+        if (viewModelVisit.isEdit()) {
+            fillFields(viewModelVisit.getVisit());
+        }
+
+        if (viewModelNextVisit.isEdit()) {
+            fillFields(viewModelNextVisit.getVisit());
+        }
+
+
+        fieldsValidations();
+    }
+
+    private void fieldsValidations() {
+        TextViewUtils.addAfterTextChangedListener(b.txtDateVisit, s -> checkString(b.txtDateVisit.getText().toString(), b.tilDateVisit));
+        TextViewUtils.addAfterTextChangedListener(b.txtTimeStartVisit, s -> checkString(b.txtTimeStartVisit.getText().toString(), b.tilTimeStartVisit));
+        TextViewUtils.addAfterTextChangedListener(b.txtTimeEndVisit, s -> checkString(b.txtTimeEndVisit.getText().toString(), b.tilTimeEndVisit));
+
+    }
+
+    private boolean checkString(String s, TextInputLayout textInputLayout) {
+        if (TextUtils.isEmpty(s)) {
+            textInputLayout.setError(getString(R.string.msgError_main_form));
+            return false;
+        } else {
+            textInputLayout.setErrorEnabled(false);
+            textInputLayout.setError("");
+            return true;
+        }
+    }
+
+    private void fillFields(Visit visit) {
+        if (visit.getDate() != null) {
+            b.txtDateVisit.setText(visit.getDate());
+            b.txtTimeStartVisit.setText(visit.getStartTime());
+            b.txtTimeEndVisit.setText(visit.getEndTime());
+            b.txtComment.setText(visit.getComment());
+        }
     }
 
     private void observeStudent() {
@@ -74,13 +124,20 @@ public class VisitDetails extends Fragment {
             listStudent = new ArrayList<>();
             listStudent.addAll(students);
             List<String> nameStudents = new ArrayList<>();
-            nameStudents.add("Select Student");
-            for(Student student: students){
+            for (Student student : students) {
                 nameStudents.add(student.getName());
             }
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, nameStudents);
             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             b.spinnerStudent.setAdapter(dataAdapter);
+
+            //Fill spinner
+            if (viewModelVisit.isEdit()) {
+                b.spinnerStudent.setSelection(dataAdapter.getPosition(viewModelVisit.getVisit().getNameStudent()));
+            }
+            if(viewModelNextVisit.isEdit()){
+                b.spinnerStudent.setSelection(dataAdapter.getPosition(viewModelNextVisit.getVisit().getNameStudent()));
+            }
         });
     }
 
@@ -108,7 +165,7 @@ public class VisitDetails extends Fragment {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 String timePicker = hourOfDay + ":" + minute;
-                if (option.equals("Start")){
+                if (option.equals("Start")) {
                     SimpleDateFormat df = new SimpleDateFormat("HH:mm");
                     Date d = null;
                     try {
@@ -122,7 +179,7 @@ public class VisitDetails extends Fragment {
                     String timeEndInitial = df.format(cal.getTime());
                     b.txtTimeStartVisit.setText(timePicker);
                     b.txtTimeEndVisit.setText(timeEndInitial);
-                }else{
+                } else {
                     b.txtTimeEndVisit.setText(timePicker);
                 }
             }
@@ -134,7 +191,7 @@ public class VisitDetails extends Fragment {
         DatePickerDialogFragment datePickerDialogFragment = DatePickerDialogFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String dateSelected = dayOfMonth + "/" + (month+1) + "/" + year;
+                String dateSelected = dayOfMonth + "/" + (month + 1) + "/" + year;
                 b.txtDateVisit.setText(dateSelected);
             }
         });
@@ -142,14 +199,15 @@ public class VisitDetails extends Fragment {
     }
 
     private void saveVisit() {
-        if(validForm()){
-            if(viewModelVisit.isEdit()){
+        if (validForm()) {
+            if (viewModelVisit.isEdit()) {
                 updateVisitViewModel();
                 viewModelVisit.updateVisit(viewModelVisit.getVisit());
                 getFragmentManager().popBackStack();
-            }else{
+            }
+            if(viewModelNextVisit.isEdit()) {
                 idStudent = idStudent(nameStudentSelected);
-                viewModelVisit.insertVisit(new Visit(b.txtDateVisit.getText().toString(), b.txtTimeStartVisit.getText().toString(), b.txtTimeEndVisit.getText().toString(), b.txtComment.getText().toString(), false, idStudent));
+                viewModelNextVisit.insertVisit(new Visit(b.txtDateVisit.getText().toString(), b.txtTimeStartVisit.getText().toString(), b.txtTimeEndVisit.getText().toString(), b.txtComment.getText().toString(), idStudent));
                 getFragmentManager().popBackStack();
             }
         }
@@ -157,8 +215,8 @@ public class VisitDetails extends Fragment {
 
     private Long idStudent(String nameStudentSelected) {
         Long result = -1L;
-        for (Student student: listStudent){
-            if(student.getName().equals(nameStudentSelected)){
+        for (Student student : listStudent) {
+            if (student.getName().equals(nameStudentSelected)) {
                 result = student.getId();
             }
         }
@@ -166,10 +224,23 @@ public class VisitDetails extends Fragment {
     }
 
     private void updateVisitViewModel() {
-
+        idStudent = idStudent(nameStudentSelected);
+        viewModelVisit.getVisit().setDate(b.txtDateVisit.getText().toString());
+        viewModelVisit.getVisit().setStartTime(b.txtTimeStartVisit.getText().toString());
+        viewModelVisit.getVisit().setEndTime(b.txtTimeEndVisit.getText().toString());
+        viewModelVisit.getVisit().setComment(b.txtComment.getText().toString());
+        viewModelVisit.getVisit().setIdStudent(idStudent);
     }
 
     private boolean validForm() {
-        return true;
+        if (checkString(b.txtDateVisit.getText().toString(), b.tilDateVisit) && checkString(b.txtTimeStartVisit.getText().toString(), b.tilTimeStartVisit) &&
+                checkString(b.txtTimeEndVisit.getText().toString(), b.tilTimeEndVisit)) {
+            return true;
+        } else {
+            checkString(b.txtDateVisit.getText().toString(), b.tilDateVisit);
+            checkString(b.txtTimeStartVisit.getText().toString(), b.tilTimeStartVisit);
+            checkString(b.txtTimeEndVisit.getText().toString(), b.tilTimeEndVisit);
+            return false;
+        }
     }
 }

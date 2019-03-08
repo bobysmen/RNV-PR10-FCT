@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SeekBarPreference
+        android:defaultValue="15"
+        android:title="Days next visit"
+        android:key="seekBarPreference"
+        android:max="30"
+        android:min="5"/>
+
+    <ListPreference
+        android:key="@string/pref_listKey"
+        android:title="@string/pref_listTitle"
+        android:summary="List Next Visists"
+        android:defaultValue="@string/pref_listDefaultValue"
+        android:entries="@array/pref_listEntries"
+        android:entryValues="@array/pref_listEntryValues"
+        app:useSimpleSummaryProvider="true"/>
+
+</PreferenceScreen>

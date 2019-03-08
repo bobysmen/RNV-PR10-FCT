@@ -17,6 +17,10 @@
         <item
             android:id="@+id/visitMainFragment"
             android:title="@string/mnu_txt_visit"/>
+
+        <item
+            android:id="@+id/nextVisitMainFragment"
+            android:title="@string/mnu_txt_nextVisit"/>
     </group>
 
 </menu>

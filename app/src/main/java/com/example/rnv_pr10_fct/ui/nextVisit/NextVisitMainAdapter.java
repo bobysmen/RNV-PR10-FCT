@@ -1,4 +1,4 @@
-package com.example.rnv_pr10_fct.ui.visit;
+package com.example.rnv_pr10_fct.ui.nextVisit;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -15,12 +15,11 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class VisitMainAdapter extends ListAdapter<Visit, VisitMainAdapter.ViewHolder> {
+public class NextVisitMainAdapter extends ListAdapter<Visit, NextVisitMainAdapter.ViewHolder> {
 
+    private final OnNextVisitClickListenerEdit onNextVisitClickListenerEdit;
 
-    private final OnVisitClickListenerEdit onVisitClickListenerEdit;
-
-    public VisitMainAdapter(OnVisitClickListenerEdit onVisitClickListenerEdit) {
+    public NextVisitMainAdapter(OnNextVisitClickListenerEdit onNextVisitClickListenerEdit) {
         super(new DiffUtil.ItemCallback<Visit>() {
             @Override
             public boolean areItemsTheSame(@NonNull Visit oldItem, @NonNull Visit newItem) {
@@ -36,19 +35,20 @@ public class VisitMainAdapter extends ListAdapter<Visit, VisitMainAdapter.ViewHo
                         (oldItem.getIdStudent() == newItem.getIdStudent());
             }
         });
-        this.onVisitClickListenerEdit = onVisitClickListenerEdit;
+        this.onNextVisitClickListenerEdit = onNextVisitClickListenerEdit;
     }
+
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(
                 LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.visit_list_item_fragment, parent, false), onVisitClickListenerEdit);
+                        .inflate(R.layout.visit_list_item_fragment, parent, false), onNextVisitClickListenerEdit);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         holder.bind(getItem(position));
     }
 
@@ -62,21 +62,27 @@ public class VisitMainAdapter extends ListAdapter<Visit, VisitMainAdapter.ViewHo
         return super.getItem(position).getId();
     }
 
+
+
     static class ViewHolder extends RecyclerView.ViewHolder{
 
         private final TextView lblName;
         private final TextView lblDate;
 
-        public ViewHolder(@NonNull View itemView, OnVisitClickListenerEdit onVisitClickListenerEdit) {
+        public ViewHolder(@NonNull View itemView, OnNextVisitClickListenerEdit onNextVisitClickListenerEdit) {
             super(itemView);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblDate = ViewCompat.requireViewById(itemView, R.id.lblDate);
-            itemView.setOnClickListener(v -> onVisitClickListenerEdit.onItemClick(getAdapterPosition()));
+            itemView.setOnClickListener(v -> onNextVisitClickListenerEdit.onItemClick(getAdapterPosition()));
         }
 
         void bind(Visit visit){
             lblName.setText(visit.getNameStudent());
-            lblDate.setText(visit.getDate());
+            if (!visit.getDate().equals("")) {
+                lblDate.setText(visit.getDate());
+            }else{
+                lblDate.setText("Hacer Visita");
+            }
         }
     }
 }

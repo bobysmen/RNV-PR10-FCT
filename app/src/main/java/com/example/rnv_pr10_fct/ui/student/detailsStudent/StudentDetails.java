@@ -163,6 +163,7 @@ public class StudentDetails extends Fragment {
             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             b.spinnerCompany.setAdapter(dataAdapter);
 
+            //fill Spinner
             if(viewModelStudent.isEdit()){
                 String nameCompanySpinner = "";
                 for(Company company: companies){
